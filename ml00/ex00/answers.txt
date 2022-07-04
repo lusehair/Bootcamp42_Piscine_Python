@@ -1,0 +1,10 @@
+• Output a list of installed packages and their versions --> conda list
+• Show the package metadata of numpy 
+--> cat /goinfre/lusehair/miniconda3/pkgs/numpy-1.21.5-py37h6c91a56_3/info/index.json
+
+• Search for PyPI packages whose name or summary contains "tesseract" 
+--> pip_search tesseract
+
+Freeze the packages and their current versions in a requirements.txt file you have
+to turn-in.
+--> python -m pip freeze > requirements.txt
