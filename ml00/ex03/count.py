@@ -1,16 +1,21 @@
 from string import punctuation
 from collections import Counter
 
-# def text_analyzer:
+def text_analyzer(*_input):
+    dott = 0;
+    if len(_input) == 0 :
+       _input =  input("What is the text to analyze? ")
+    elif len(_input) > 1 :
+        print("ERROR")
+        return
+    else :
+        _input = _input[0] 
 
-input = "Python is an interpreted, high-level, general-purpose programming language. Created by Guido va Rossum and first released in 1991, Pythons design philosophy emphasizes code readability with its notable use of significant whitespace."
-spaces = input.count(' ') 
-upper = sum(1 for c in input if c.isupper())
-lower = sum(1 for c in input if c.islower())
-dott = {k:v for k, v in input.iteritems() if k in punctuation}
-
-print("spaces: ", spaces)
-print("upper: ", upper)
-print("lower: ", lower)
-print("ponctuation: ", len(dott))
-print("char: ", len(input))
+    for i in _input :
+        if i in punctuation :
+            dott += 1
+    print("The text contains " + str(len(_input)) + " characters: ")
+    print("- " +  str(sum(1 for c in _input if c.isupper())) + " upper letters")
+    print("- " + str(sum(1 for c in _input if c.islower())) + " lower letters")
+    print("- " +  str(dott) + " punctuation marks")
+    print("- " + str(_input.count(' ')) + " spaces")
