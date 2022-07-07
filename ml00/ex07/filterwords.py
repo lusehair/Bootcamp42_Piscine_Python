@@ -1,11 +1,15 @@
 import sys
 
-array = sys.argv[1]
+if len(sys.argv) != 3:
+    print("ERROR")
 
-print(int(sys.argv[2]))
+elif sys.argv[2].isdigit() == False:
+    print("ERROR")
 
-for x in array :
-    if len(x) <= int(sys.argv[2]) :
-        array.remove(x)
-
-print(array)
+else :
+    array = sys.argv[1].split() 
+    ret =[]
+    for x in array :
+        if len(x) > int(sys.argv[2]) :
+            ret.append(x)        
+    print(ret)
