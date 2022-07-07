@@ -1,5 +1,6 @@
 from string import punctuation
 from collections import Counter
+import sys
 
 def text_analyzer(*_input):
     dott = 0;
@@ -14,8 +15,17 @@ def text_analyzer(*_input):
     for i in _input :
         if i in punctuation :
             dott += 1
-    print("The text contains " + str(len(_input)) + " characters: ")
-    print("- " +  str(sum(1 for c in _input if c.isupper())) + " upper letters")
-    print("- " + str(sum(1 for c in _input if c.islower())) + " lower letters")
-    print("- " +  str(dott) + " punctuation marks")
-    print("- " + str(_input.count(' ')) + " spaces")
+    print("The text contains " + str(len(_input)) + " character(s): ")
+    print("- " +  str(sum(1 for c in _input if c.isupper())) + " upper letter(s)")
+    print("- " + str(sum(1 for c in _input if c.islower())) + " lower letter(s)")
+    print("- " +  str(dott) + " punctuation mark(s)")
+    print("- " + str(_input.count(' ')) + " space(s)")
+
+
+if __name__ == "__main__":
+
+    if len(sys.argv) != 2 :
+        print("AssertionError: more than one argument are provided")
+    else :
+        text_analyzer(sys.argv[1])
+

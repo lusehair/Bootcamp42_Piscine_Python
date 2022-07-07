@@ -2,6 +2,10 @@
 • Show the package metadata of numpy 
 --> cat /goinfre/lusehair/miniconda3/pkgs/numpy-1.21.5-py37h6c91a56_3/info/index.json
 
+• Remove the package numpy. --> conda remove numpy 
+
+• (Re)install the package numpy. --> conda install numpy 
+
 • Search for PyPI packages whose name or summary contains "tesseract" 
 --> pip_search tesseract
 
