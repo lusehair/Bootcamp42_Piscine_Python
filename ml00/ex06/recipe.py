@@ -31,11 +31,10 @@ def addREcipe():
     _meal = ''
     _prep_time = ''
 
-    # os.system('clear')
-    _title = input("The name of your meal: ")
-    _ingredients = input("List of ingredients: ")
-    _meal = input("Type of meal: ")
-    _prep_time = input("The prep time (in minutes): ")
+    _title = input("Enter a name: ")
+    _ingredients = input("Enter ingredients: ")
+    _meal = input("Enter a meal type: ")
+    _prep_time = input("Enter a preparation time: ")
 
     cookBook[_title] = dict(title = _title, ingredients = _ingredients, meal = _meal, prep_time = _prep_time)
 
@@ -44,7 +43,6 @@ def addREcipe():
 def printRecipe(): 
 
     theRecipe = ''
-    # os.system('clear')
     theRecipe = input('What i want to cook ') 
     if theRecipe in cookBook:
         print("Recipe for " + cookBook[theRecipe]['title'] + ':') 
@@ -52,12 +50,12 @@ def printRecipe():
         print('To be eaten for ' + cookBook[theRecipe]['meal'])
         print("Takes " + cookBook[theRecipe]['prep_time'] + " minutes of cooking.")
     else :
+        print("inputError: unknown recipe")
         printRecipe()
 
 def menu():
     while True:
         choice = ''
-        # os.system('clear')
         print("Please select an option by typing the corresponding number:") 
         print("1: Add a recipe \n 2: Delete a recipe \n 3: Print a recipe \n 4: Print the cookbook \n 5: Quit\n >>", end='')
         choice = input()
@@ -69,11 +67,12 @@ def menu():
         elif choice == '3':
             printRecipe()
         elif choice == '4':
-            # os.system('clear')
             listRecipe()
         elif choice == '5':
+            print("Cookbook closed. Goodbye !")
             return 0
         else :
+            print("Sorry, this option does not exist.")
             menu()
 
 menu()
