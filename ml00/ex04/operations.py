@@ -4,7 +4,10 @@ import sys
 if len(sys.argv) < 3 :
     print("Usage: python operations.py <number1> <number2> \n Example: python operations.py 10 3\n")
 
-elif sys.argv[1].isdigit() == False or sys.argv[2].isdigit == False or sys.argv[1].count('.') or  sys.argv[2].count('.'):
+input1 = sys.argv[1].lstrip('-').lstrip('+') 
+input2 = sys.argv[2].lstrip('-').lstrip('+')
+
+if input1.isnumeric() == False or input2.isnumeric() == False:
     print("AssertionError: only numbers")
 
 elif len(sys.argv) > 3  :
