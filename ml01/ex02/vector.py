@@ -1,47 +1,184 @@
 class Vector:
-    _m = 0
-    _n = 0 
-    _data = {} 
+    shape = ()
+    values = []
     
-    def __init__(self, _raw_data) : 
+    def __init__(self, _raw_data : float, _raw_data1 : float = None) :
     
-        # case if input is n el like Vector(3) 
-        if type(_raw_data) == int :
-            self._n = int(_raw_data)
-            self._m = 1
-            for x in range(self._n) :
-                self._data[x] = float(x)
+        # if args :
+        #     print("here")
+        #     self.values.append([_raw_data])
+        #     self.values.append([_raw_data1]) 
+        #     for el in args :
+        #         self.values.append(float([el])) 
+       # print(type(_raw_data))
+        if type(_raw_data) == list :
+            #self.values.append(_raw_data)
+            self.values = _raw_data
+            column = 0
+            for el in _raw_data : 
+                column = column + 1
+            self.shape = column, len(self.values[0])
+            
+                
+
+        elif type(_raw_data) == int and _raw_data > 0 and _raw_data1 == None: 
+            print("here no1")
+            i : float = 0.0 
+            while i < _raw_data :
+                self.values.append([i])
+                i = i + 1.0 
+            self.shape = len(self.values),  len(self.values[0]) 
+
+        # Case Vector(3,6)
+        elif _raw_data1  != None and type(_raw_data) != list: 
+            print("here no")
+            if type(_raw_data) == int and type(_raw_data1) == int : 
+                if _raw_data < _raw_data1 :
+                    while _raw_data < _raw_data1 : 
+                        self.values.append([_raw_data])
+                        _raw_data = _raw_data + 1 
+                elif _raw_data > _raw_data1 : 
+                    print("this case")
+                    while _raw_data > _raw_data1 : 
+                        self.values.append([_raw_data])
+                        _raw_data = _raw_data - 1 
+            else :
+                print("Error: In this case you should input only int")
+                exit()
+            self.shape = len(self.values),  len(self.values[0]) 
+        # print(self.shape[1])    
 
 
-        # case if input is like Vector(10,16)
-        elif type(_raw_data) == tuple :
-            for x in range(_raw_data[1] - _raw_data[0]) :
-                self._data = float(_raw_data[0] + x)
 
-        else:
-        # Case if input is like Vector([[0.0, 1.0, 2.0, 3.0]])
-        # or like Vector([[0.0], [1.0], [2.0], [3.0]])
-            self._m = len(_raw_data)
-            # Case if m == 1, need to split the str into a list and remove dirty character 
-            if self._m  == 1: 
-                self._n = str(_raw_data).count('.')
-                _raw_data = str(_raw_data) 
-                _raw_data = _raw_data.split(',')
-                _raw_data[0] = _raw_data[0].replace('[', "")
-                _raw_data[self._n - 1] = _raw_data[self._n - 1].replace(']', "")
-            # convert str el into float in the _data list         
-            for x in range(self._n) :
-                self._data[x] = float(_raw_data) 
+
+    def __mul__(self, multi) :
+        ret = []
+        if type(multi) == int or type(multi) == float : 
+            for value in self.values : 
+                for el in value :
+                    ret.append([el * multi])
+        else : 
+            print('error: the multiplicator should be a int or a float')
+            exit()
+        return Vector(ret)  
+
+            
+
+
+    def __rmul__(self, multi) :
+        return self.__mul__(multi)
+
+
+
+    def __add__(self, v2) : 
+        ret = []
         
-
-    def values(self) :
-
-       # return(self._data)
-       print(self._data)
+        if type(v2) != Vector :
+            print("errorType: An addition between two differents type is impossible")
+            exit()
+        if self.shape == v2.shape :
+            for value, value2 in zip(self.values, v2.values) :
+                for el, el2 in zip(value, value2) :
+                    ret.append([el + el2]) 
+            return Vector(ret) 
+            
+        else : 
+            print('error: vectors don\'t have the same shape')
+            exit()
+    
+    def __radd__(self, v2) :
+        return self.__add__(v2)  
     
 
+
+    def __sub__(self, v2) : 
+        ret = []
+        
+        if type(v2) != Vector :
+            print("errorType: An addition between two differents type is impossible")
+            exit()
+        if self.shape == v2.shape :
+            for value, value2 in zip(self.values, v2.values) :
+                for el, el2 in zip(value, value2) :
+                    ret.append([el - el2]) 
+            return Vector(ret) 
+            
+        else : 
+            print('error: vectors don\'t have the same shape')
+            exit()
+    
+    def __rsub__(self, v2) :
+        return self.__add__(v2)  
+    
+                 
+
+    def __truediv__(self, multi) :
+        if multi == 0 : 
+            print("ZeroDivisionError: division by zero.")
+            exit()
+        ret = []
+        if type(multi) == int or type(multi) == float : 
+            for value in self.values : 
+                for el in value :
+                    ret.append([el / multi])
+        else : 
+            print('error: the multiplicator should be a int or a float')
+            exit()
+        return Vector(ret)
+
+    
+    def __str__(self) :
+        return str(self.values)
+
+            
+
+
+    def __rtruediv__(self, multi) :
+        print('NotImplementedError: Division of a scalar by a Vector is not defined here.')
+        exit()
     
 
 
+    def T(self) :
+         
+        ret = []
+        if self.shape[0] > 1 :
+            ret.append([item for sublist in self.values for item in sublist])
+        else : 
+            print(len(self.values[0]))
+            for el in self.values :
+                for val in el :
+                    ret.append([val])
+        return Vector(ret)
 
+    
+    def dot(self, v2) :
+        ret = 0
+        if self.shape == v2.shape : 
+            for value, value2 in zip(self.values, v2.values) :
+                for el, el2 in zip(value, value2) :
+                    ret = ret + (el * el2) 
+            return ret
+        else : 
+            print("The vectors d\'ont have the same shape")
+            exit()
+
+    def __repr__(self) :
+        return str(self.values)
+
+
+
+
+
+    
+
+       
+
+    
+
+        
+            
+
+
+                 
 
