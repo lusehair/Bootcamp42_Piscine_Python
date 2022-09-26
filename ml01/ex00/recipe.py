@@ -7,7 +7,7 @@ class Recipe:
     _recipe_type = ""
     _type_list = ["starter", "lunch", "dessert"]
 
-    def __init__(self, name, cooking_lvl, cooking_time, ingredients, recipe_type, description="empty"):
+    def __init__(self, name, cooking_lvl, cooking_time, ingredients, description="empty", recipe_type=None):
         self._name = name 
         self._ingredients = ingredients
         self._description = description
@@ -33,7 +33,7 @@ class Recipe:
     def __str__(self) :
         txt = "Recipe for " + self._name + ". His cooking level is " + str(self._cooking_lvl)
         txt = txt + " , you need " + str(self._cooking_time) + " minutes for cook this. Of course you need : "
-        txt = txt + self._ingredients + " . It can be eat " + self._recipe_type 
+        txt = txt + str(self._ingredients) + " . It can be eat " + self._recipe_type 
         return txt 
 
     

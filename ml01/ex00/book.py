@@ -2,7 +2,7 @@ import datetime
 from recipe import Recipe
 
 class Book:
-    name =""
+    name = ""
     last_update =  datetime.datetime.now()
     creation_date = datetime.datetime.now()
     recipes_list= {
@@ -11,11 +11,16 @@ class Book:
         'dessert' : []
     } 
 
+    def __init__(self, _name = None) :
+        self.name = _name 
+
+
     def get_recipe_by_name(self, name) :
         for _, recipes in self.recipes_list.items() :
             for recipe in recipes :
                 if recipe._name == name : 
                     return recipe
+        print("error: This recipe is unknown")
     
 
     def get_recipe_by_types(self, type) :
@@ -23,7 +28,7 @@ class Book:
         for meal, recipes in self.recipes_list.items() : 
             if meal == type:
                for recipe in recipes :
-                ret.append(recipe._name)
+                ret.append(recipe)
         return ret 
 
         
