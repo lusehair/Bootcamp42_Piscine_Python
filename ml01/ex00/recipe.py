@@ -7,17 +7,21 @@ class Recipe:
     _recipe_type = ""
     _type_list = ["starter", "lunch", "dessert"]
 
-    def __init__(self, name, cooking_lvl, cooking_time, ingredients, description="empty", recipe_type=None):
+    def __init__(self, name, cooking_lvl, cooking_time, ingredients, description=None, recipe_type=None):
         self._name = name 
         self._ingredients = ingredients
         self._description = description
         self._recipe_type = recipe_type 
         try :
-            self._cooking_lvl = int(cooking_lvl)
+            self._cooking_lvl = cooking_lvl
             self._cooking_time = int(cooking_time)
         
         except:
             print("The time and/or the cooking level is not a integer")
+
+        if type(self._cooking_lvl) != int :
+            print("the cooking level should be a int")
+            return 
 
         if self._cooking_lvl < 1 or self._cooking_lvl > 5 :
             print("The cooking level is out of range") 
@@ -28,6 +32,10 @@ class Recipe:
         print(self._recipe_type)
         if self._type_list.count(self._recipe_type) == 0 :
             print("the recipe time doesn't exist")
+            return 
+        
+        if len(self._ingredients) == 0 :
+            print("you cannot have empty ingredients list")
             return 
     
     def __str__(self) :

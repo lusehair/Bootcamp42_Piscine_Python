@@ -19,11 +19,12 @@ class Book:
         for _, recipes in self.recipes_list.items() :
             for recipe in recipes :
                 if recipe._name == name : 
+                    print(recipe)
                     return recipe
         print("error: This recipe is unknown")
     
 
-    def get_recipe_by_types(self, type) :
+    def get_recipes_by_types(self, type) :
         ret = []
         for meal, recipes in self.recipes_list.items() : 
             if meal == type:
