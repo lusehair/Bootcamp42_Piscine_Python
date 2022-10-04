@@ -25,21 +25,11 @@ class NumPyCreator :
         if shape < 0: 
             return None 
         return np.random.rand(shape)
-    def identity(self, n) :
-        
+    def identity(self, n) : 
+        if n <= 1 :
+            return None
+        return np.identity(n) 
     
-        
-    
-        
-    
-
-        
-
-
-
-
-
-
 
 if __name__ == "__main__":
 
