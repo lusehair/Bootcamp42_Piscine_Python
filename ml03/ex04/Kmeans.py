@@ -16,9 +16,6 @@ class KmeansClustering:
 		self.ncentroid = ncentroid 
 		self.max_iter = max_iter 
 		self.centroids = [] 
-
-	def euclidean_distance(self, a, b):
-		return math.sqrt(sum(np.power(b - a, 2)))
 	
 	def fit(self, X):
 		"""
@@ -105,8 +102,6 @@ def main(**kwargs):
 	kluster = KmeansClustering(max_iter=100)
 	for k, v in kwargs.items():
 		setattr(kluster, k, v)
-		print('keyword argument: {} is to {}'.format(k, v))
-	print(kluster.filepath)
 	kluster.ncentroid = int(kluster.ncentroid)
 	kluster.max_iter = int(kluster.max_iter)
 	f = open(kluster.filepath)
