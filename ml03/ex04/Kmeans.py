@@ -8,7 +8,7 @@ from mpl_toolkits.mplot3d import Axes3D
 # https://www.lovelyanalytics.com/2016/09/06/k-means-comment-ca-marche/ 
 # https://stackoverflow.com/questions/3518778/how-do-i-read-csv-data-into-a-record-array-in-numpy
 # https://stackoverflow.com/questions/39390418/python-how-can-i-enable-use-of-kwargs-when-calling-from-command-line-perhaps
-
+# https://github.com/SKTPausanias/python_bootcamp-42AI/blob/main/day03/ex04/Kmeans.py
 
 
 class KmeansClustering:
