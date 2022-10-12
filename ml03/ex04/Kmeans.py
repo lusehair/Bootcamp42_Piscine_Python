@@ -6,8 +6,13 @@ from mpl_toolkits.mplot3d import Axes3D
 import math
 import sys
 
+## Ressources 
+# https://www.lovelyanalytics.com/2016/09/06/k-means-comment-ca-marche/ 
+# https://stackoverflow.com/questions/3518778/how-do-i-read-csv-data-into-a-record-array-in-numpy
+# https://stackoverflow.com/questions/39390418/python-how-can-i-enable-use-of-kwargs-when-calling-from-command-line-perhaps
+
 class KmeansClustering:
-	def __init__(self, max_iter=10, ncentroid=4):
+	def __init__(self, max_iter=30, ncentroid=4):
 		self.ncentroid = ncentroid 
 		self.max_iter = max_iter 
 		self.centroids = [] 
@@ -96,13 +101,15 @@ class KmeansClustering:
 
 def main(**kwargs):
 	
-	
-	
-	f = open("solar_system_census.csv")
-	
+		
 	kluster = KmeansClustering(max_iter=100)
 	for k, v in kwargs.items():
-		print('keyword argument: {} = {}'.format(k, v))
+		setattr(kluster, k, v)
+		print('keyword argument: {} is to {}'.format(k, v))
+	print(kluster.filepath)
+	kluster.ncentroid = int(kluster.ncentroid)
+	kluster.max_iter = int(kluster.max_iter)
+	f = open(kluster.filepath)
 	lines = f.readlines()
 	data = []
 	for i in range(len(lines)):
