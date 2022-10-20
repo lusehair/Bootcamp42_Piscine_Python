@@ -38,7 +38,6 @@ class ScrapBooker() :
         """ 
         if (type(array).__module__ == np.__name__) is False :
             return None
-
         if dim[0] > array.shape[0] or dim[1] > array.shape[1] :
             return None 
         if dim[0] < 0 or dim[1] < 0 or position[0] < 0 or position[1] < 0 : 
