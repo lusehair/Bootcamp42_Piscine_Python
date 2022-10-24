@@ -18,7 +18,9 @@ def how_many_medals(df, name) :
         ret_dict[key] = {
         'G' : sum((good_people.Year == key) & (good_people.Medal == 'Gold')),
         'S':  sum((good_people.Year == key) & (good_people.Medal == 'Silver')),
-        'B':  sum((good_people.Year == key) & (good_people.Medal == 'Bronze'))}
+        'B':  sum((good_people.Year == key) & (good_people.Medal == 'Bronze'))
+        }
+    return ret_dict
 
 if __name__ == "__main__":
 
